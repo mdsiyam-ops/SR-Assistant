@@ -1,0 +1,7 @@
+{
+  "name": "S.R Assistant",
+  "description": "S.R Assistant - টালি আকারে ব্যবসায়িক হিসাব, কাস্টমার ও সাপ্লায়ার দেনা-পাওনা, প্রোডাক্ট স্টক, অর্ডার এবং বিস্তারিত রিপোর্ট ম্যানেজমেন্ট অ্যাপ।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
