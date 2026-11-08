@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.R Assistant - ডিজিটাল টালি ও ব্যবসায়িক হিসাব সহকারী</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-dark: #064e3b;
+            --primary-light: #10b981;
+            --secondary: #0284c7;
+            --navy: #0f172a;
+            --card-bg: #ffffff;
+            --bg: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --paona: #16a34a;
+            --dena: #dc2626;
+            --gold: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+            color: white;
+            padding: 4rem 1.5rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--bg);
+            clip-path: ellipse(60% 100% at 50% 100%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .app-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #064e3b;
+        }
+
+        .btn-primary:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .notice-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: -2.5rem auto 3rem;
+            max-width: 900px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .notice-icon {
+            background: #dbeafe;
+            color: #1d4ed8;
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .icon-green { background: #dcfce7; color: #15803d; }
+        .icon-blue { background: #e0f2fe; color: #0369a1; }
+        .icon-red { background: #fee2e2; color: #b91c1c; }
+        .icon-gold { background: #fef3c7; color: #b45309; }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .admin-banner {
+            background: #0f172a;
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15);
+        }
+
+        .admin-tag {
+            background: #f59e0b;
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .how-to {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 4rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 2.2rem; }
+            .notice-card { flex-direction: column; text-align: center; }
+            .admin-banner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <span class="app-badge">📱 অ্যান্ড্রয়েড অ্যাপ্লিকেশন (Android APK)</span>
+            <h1 class="title">S.R Assistant</h1>
+            <p class="subtitle">ডিজিটাল টালি খাতা, কাস্টমার বাকি ও সাপ্লায়ার দেনা-পাওনা, প্রোডাক্ট স্টক এবং অর্ডার ব্যবস্থাপনার পূর্ণাঙ্গ ব্যবসায়িক সমাধান।</p>
+            
+            <div class="btn-group">
+                <a href="https://github.com" target="_blank" class="btn btn-primary">
+                    <span>⬇️</span> অ্যান্ড্রয়েড APK ডাউনলোড করুন
+                </a>
+                <a href="#install-guide" class="btn btn-outline">
+                    <span>📖</span> ইনস্টলেশন নির্দেশিকা
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Notice / Explanatory Banner -->
+        <div class="notice-card">
+            <div class="notice-icon">ℹ️</div>
+            <div>
+                <h4 style="font-size: 1.15rem; color: #1e3a8a; margin-bottom: 4px;">কেন গিটহাব পেজেসে ফাঁকা (Blank Page) দেখাচ্ছিল?</h4>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    <strong>S.R Assistant</strong> হলো একটি আধুনিক <strong>নেটিভ অ্যান্ড্রয়েড অ্যাপ (Native Android App)</strong> যা Kotlin ও Jetpack Compose দিয়ে তৈরি। গিটহাব পেজেস (GitHub Pages) শুধুমাত্র স্ট্যাটিক ওয়েবসাইট রান করতে পারে, অ্যান্ড্রয়েড অ্যাপ ব্রাউজারে চলে না। তাই এই ল্যান্ডিং পেজটি যুক্ত করা হয়েছে যেখান থেকে আপনি সরাসরি অ্যান্ড্রয়েড ফোনের জন্য <strong>APK ডাউনলোড</strong> ও ইনস্টল করতে পারবেন।
+                </p>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon icon-green">👥</div>
+                <h3>কাস্টমার বাকি খাতা</h3>
+                <p>কাস্টমারদের বাকি ও জমার ডিজিটাল হিসাব রাখুন। এক ক্লিকে হোয়াটসঅ্যাপ ও এসএমএসে স্বয়ংক্রিয় তাগাদা বার্তা পাঠান।</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon icon-red">🏬</div>
+                <h3>সাপ্লায়ার দেনা খাতা</h3>
+                <p>মহাজন বা সাপ্লায়ারদের মালামাল ক্রয়, বিল পরিশোধ এবং ফেরত পণ্যের নিখুঁত হিসাব সংরক্ষণ করুন।</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon icon-blue">📦</div>
+                <h3>প্রোডাক্ট ও স্টক ব্যবস্থাপনা</h3>
+                <p>দোকানের প্রতিটি মালামালের পাইকারি ও খুচরা মূল্য, ইউনিট (পিস/কেজি) এবং স্টক ইনভেন্টরি ট্র্যাকিং।</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon icon-gold">🛒</div>
+                <h3>ডিজিটাল অর্ডার ও চালান</h3>
+                <p>নতুন অর্ডারের আইটেম লিস্ট তৈরি করুন এবং গ্রাহকদের ডিজিটাল মেমো/চালান প্রিন্ট বা শেয়ার করুন।</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon icon-green">📊</div>
+                <h3>দৈনিক ও মাসিক রিপোর্ট</h3>
+                <p>ব্যবসায়ের দৈনিক বিক্রয়, নগদ কালেকশন, কাস্টমারভিত্তিক ও পণ্যভিত্তিক বিস্তারিত লাভ-ক্ষতির বিশ্লেষণ।</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon icon-blue">🔒</div>
+                <h3>নিরাপদ ও ১-নম্বর ১-অ্যাকাউন্ট</h3>
+                <p>কোনো অটো-লগইন নেই। প্রতিটি নম্বরে মাত্র একটি একাউন্ট এবং ওটিপি দিয়ে সুরক্ষিত পাসওয়ার্ড রিসেট সুবিধা।</p>
+            </div>
+        </div>
+
+        <!-- Admin Control Banner -->
+        <div class="admin-banner">
+            <div>
+                <span class="admin-tag">🛡️ সুপার এডমিন প্যানেল</span>
+                <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">এডমিন মোবাইল: 01871752386</h2>
+                <p style="color: #cbd5e1; max-width: 600px;">
+                    শুধুমাত্র <strong>01871752386</strong> নম্বরে রয়েছে বিশেষ এডমিন কন্ট্রোল প্যানেল। যেখান থেকে কতজন ইউজার অ্যাপ ব্যবহার করছেন, তাদের সমস্ত কাস্টমার ও সাপ্লায়ারের লেনদেন হিস্ট্রি পর্যবেক্ষণ করা এবং যেকোনো সমস্যায় গ্রাহককে হিসাব বুঝিয়ে দেওয়ার সুবিধা রয়েছে।
+                </p>
+            </div>
+            <a href="tel:01871752386" class="btn btn-primary" style="align-self: center;">
+                📞 এডমিন হটলাইনে কল দিন
+            </a>
+        </div>
+
+        <!-- How to Install on Phone -->
+        <div class="how-to" id="install-guide">
+            <h2 style="font-size: 1.7rem; text-align: center; margin-bottom: 0.5rem;">ফোনে কিভাবে ইনস্টল করবেন?</h2>
+            <p style="text-align: center; color: #64748b;">খুব সহজেই ৪টি ধাপে অ্যাপটি আপনার অ্যান্ড্রয়েড ফোনে চালু করুন:</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">১</div>
+                    <h4>APK ডাউনলোড</h4>
+                    <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">Google AI Studio অথবা GitHub Releases থেকে APK ফাইল ডাউনলোড করুন।</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">২</div>
+                    <h4>ইনস্টল করুন</h4>
+                    <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">ফোনের ডাউনলোড ফোল্ডারে গিয়ে APK ফাইলে চাপুন এবং Install বাটনে ক্লিক করুন।</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">৩</div>
+                    <h4>নতুন রেজিষ্ট্রেশন</h4>
+                    <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">অ্যাপ ওপেন করে আপনার মোবাইল নম্বর দিয়ে নতুন একাউন্ট খুলে নিন।</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">৪</div>
+                    <h4>হিসাব শুরু</h4>
+                    <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">সম্পূর্ণ ফ্রেশ একাউন্টে আপনার কাস্টমার ও সাপ্লায়ারদের হিসাব রাখা শুরু করুন!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-weight: 600; color: #e2e8f0; margin-bottom: 0.5rem;">S.R Assistant &bull; ডিজিটাল টালি ও ব্যবসায়িক হিসাব</p>
+            <p>এডমিন হেল্পলাইন: 01871752386 | কপিরাইট &copy; ২০২৬ সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </footer>
+
+</body>
+</html>
